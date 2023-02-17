@@ -75,6 +75,20 @@ var updateUseDBServiceControllerFunc = async (req, res) => {
         res.send({ "status": false, "message": error.msg });
     }
 }
+var findAllDBServiceControllerFunc = async (req, res) => {
+    var result = null;
+    try {
+        result = await userService.findAllUseDBService(req.body);
+        if (result.status) {
+            res.send({ "status": true, "message": result.msg});
+        } else {
+            res.send({ "status": false, "message": result.msg });
+        }
+    } catch (error) {
+        console.log(error);
+        res.send({ "status": false, "message": error.msg });
+    }
+}
 
 
-module.exports = {createUserControllerFunc,loginUserControllerFunc,findOneUserDBServiceControllerFunc,deletUseDBServiceControllerFunc,updateUseDBServiceControllerFunc};
+module.exports = {createUserControllerFunc,loginUserControllerFunc,findOneUserDBServiceControllerFunc,deletUseDBServiceControllerFunc,updateUseDBServiceControllerFunc, findAllDBServiceControllerFunc};

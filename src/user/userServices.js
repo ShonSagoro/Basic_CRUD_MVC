@@ -100,7 +100,7 @@ module.exports.deletUseDBService = (userDetails)=> {
 //Actualizar
 module.exports.updateUseDBService = (userDetails)=> {
    var encrypted = encryptor.encrypt(userDetails.password);
-   userDetails.password=encrypted;
+   userDetails.password = encrypted;
    return new Promise(function myFn(resolve, reject)  {
       userModel.findOneAndUpdate({ email: userDetails.email},userDetails,function getresult(error, result) {
          
@@ -113,6 +113,24 @@ module.exports.updateUseDBService = (userDetails)=> {
             }
             else {
                reject({status: false,msg: "Detalles de usuario a ACTUALIZADO invalido"});
+            }
+         }
+      });
+   });
+}
+module.exports.findAllUseDBService = ()=> {
+   return new Promise(function myFn(resolve, reject)  {
+      userModel.find(function getresult(error, result) {
+         
+         if(error) {
+            reject({status: false, msg: "Error"});
+         }
+         else {
+            if(result !=undefined &&  result !=null) {
+               resolve({status: true,msg: `Usuarios: ${result}`});  
+            }
+            else {
+               reject({status: false,msg: "No hay usuarios"});
             }
          }
       });

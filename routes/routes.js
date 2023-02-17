@@ -13,6 +13,7 @@ router.route('/user/find').get(userController.findOneUserDBServiceControllerFunc
 router.route('/user/delete').delete(userController.deletUseDBServiceControllerFunc);
 //ruta para actualizar
 router.route('/user/update').put(userController.updateUseDBServiceControllerFunc);
+router.route('/user/list').get(userController.findAllDBServiceControllerFunc);
 
 
 
